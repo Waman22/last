@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Welcome to the dashboard</title>
+
+  <link rel="stylesheet" type="text/css" href="/static/style.css"> <!-- link to the CSS stylesheet -->
+</head>
+<body>
+   <!--Creating a Navbar-->
+   <header>
+    <h1 class="display">{{username}}'s Smart Multizone Outdoor Plant Watering System Dashboard</h1>
+  </header>
+   <div class="navbar">
+		<nav>
+      <h1 class="pls">Smart Multizone Outdoor Plant Watering System</h1>
+			<ul>
+        <li><a href="{{ url_for('index3', username=username) }}">Dashboard</a></li>
+        <li><a href="{{ url_for('monitor', username=username) }}">Monitor</a></li>
+        <li><a href="{{ url_for('Time', username=username) }}">Scheduling</a></li>
+        <li><a href="{{ url_for('login2') }}">Log Out</a></li>
+				</ul>
+		</nav>
+
+    </div>
+    
+<!--Displaying sensors data -->
+<div class="main">
+  <h1>{{username}} welcome To  Your Smart Multizone Outdoor Plant Watering System</h1>
+    <section class="hero">
+
+      <p>Monitor and control your plants from anywhere with this smart multizone outdoor plant watering system.</p>
+
+        <h2>Features</h2>
+        <ul>
+          <li>Customizable watering schedule for each zone</li>
+          <li>Real-time monitoring of soil moisture and temperature</li>
+          <li>Automatic shut-off during rain or freezing temperatures</li>
+          <li>Mobile app for remote control and monitoring</li>
+          <li>Alerts for low water levels and system errors</li>
+        </ul>
+    
+    </section>
+
+    
+  
+    <h3>Please select region below:</h3>
+    <form method="get" action="{{ url_for('index3', username=username) }}">
+      <label for="region">Region:</label>
+      <select name="region" id="region">
+        <option value="" {% if not region %}selected{% endif %}>All</option>
+        {% for region_id in range(1, region_count + 1) %}
+          <option value="{{ region_id }}" {% if region == region_id %}selected{% endif %}>Region {{ region_id }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Filter">
+    </form>
+    
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Sensor Name</th>
+        <th>Value (SI Units)</th>
+        <th>Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in sensor_data %}
+        <tr class="{{ 'even' if loop.index % 2 == 0 else 'odd' }}"> <!-- use different background colors for even and odd rows -->
+          <td>{{ data[0] }}</td>
+          <td>{{ data[1] }}</td>
+          <td>
+            {% if data[1] == "soil_moisture" %}
+              {{ data[2] }} % <!-- Soil moisture is typically expressed as a percentage -->
+            {% elif data[1] == "temperature" %}
+              {{ data[2] }} &#8451; <!-- Use Celsius as the unit for temperature -->
+            {% elif data[1] == "humidity" %}
+              {{ data[2] }} % <!-- Humidity is typically expressed as a percentage -->
+            {% elif data[1] == "water_levels" %}
+              {{ data[2] }} Litres <!-- Use Litres as the unit for water levels -->
+            {% endif %}
+          </td>
+          <td>{{ data[3] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  
+
+</div>
+
+</body>
+</html>

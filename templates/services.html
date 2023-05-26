@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Services</title>
+</head>
+<body>
+    
+    <div class="navbar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('Home') }}">Home</a></li>
+                <li><a href="{{ url_for('About') }}">About</a</li>
+                <li><a href="#">Services</a</li> 
+                <li><a href="{{ url_for('sign') }}">Signup</a</li>
+                <li><a href="{{ url_for('login2') }}">Login</a</li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="services">
+       <div class="os"><h2>OUR SERVICES</h2></div> 
+
+        <div class="row">
+            <div class="services-col">
+                <h2>Installation of smart watering system</h2>
+                <img src="/static/image/image/sensor.png" alt="">
+            </div>
+
+            <div class="services-col">
+                <h2>Maintenance and repair services</h2>
+                <img src="static/image/image/soilMsensor.jpg" alt="">
+            </div>
+
+            <div class="services-col">
+                <h2>Customized solutions to meet your specific needs</h2>
+                <img src="static/image/image/Sprinklers2.jpg" alt="">
+            </div>
+    
+        </div>
+    </div>	
+
+    <div class="contact">
+       <div class="cont">
+        <h2>CONTACT US</h2>
+        <p>Email: greenlife@org.co.za <br> Telephone: 011 692 5107(08) <br> You can also check our social media handles below</p>
+
+       </div>
+            <div class="socialicons">
+            <a class="icon facebook" href="#"> 
+                <i class="fab fa-facebook"></i>
+            </a>
+
+            <a class="icon twitter" href="#"> 
+                <i class="fab fa-twitter"></i>
+            </a>
+
+            <a class="icon instagram" href="#"> 
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a class="icon whatsapp" href="#"> 
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to {{username}} to the Time secheculing</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!--Creating a Navbar-->
+    <div class="navbar">
+      <nav>
+        <h1 class="pls">Smart Multizone Outdoor Plant Watering System</h1>
+        <ul>
+          <li><a href="{{ url_for('index3', username=username) }}">Dashboard</a></li>
+          <li><a href="{{ url_for('monitor', username=username) }}">Monitor</a></li>
+          <li><a href="{{ url_for('Time', username=username) }}">Scheduling</a></li>
+          <li><a href="{{ url_for('login2') }}">Log Out</a></li>
+          </ul>
+      </nav>
+  
+      </div>
+      <div class="main">
+    
+          <h1>Smart Multizone Outdoor Plant Watering System</h1>
+          <p>Welcome to the  Time scheduling page for your smart multizone outdoor plant watering system! From here, you can set when you want to water your plants </p>
+         
+          <form action="{{ url_for('Time', username=username) }}",  method="post">
+            <div class="time-box">
+              <label for="region">Region:</label>
+              <select name="region" id="region">
+                <option value="" {% if not region %}selected{% endif %}>All</option>
+                {% for region_id in range(1, region_count + 1) %}
+                  <option value="{{ region_id }}" {% if region == region_id %}selected{% endif %}>Region {{ region_id }}</option>
+                {% endfor %}
+              </select>
+
+            </div>
+            <br />
+            <div class="time-box">
+              <label>Time Frame</label>
+              <select name="timeframe" required>
+                <option value="">Select Time Frame</option>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+              </select>
+            </div>
+            
+            <div class="time-box">
+              <label>Water level(Liters)</label>
+              <input type="number" name="liters" placeholder="Enter The Amount Water (litres)" required=""  max="820">
+            </div>
+            
+            <!--For date of watering -->
+            <div class="time-box">
+              <label>Date for watering</label>
+              <input type="datetime-local" name="DateT" placeholder="Enter Date for watering " required="">
+            </div>
+            
+            <!--for Duration -->
+            <div class="time-box">
+              <label>Duration of watering(minutes)</label>
+              <input type="number" name="duration" placeholder="Duration of Watering" required="">
+            </div>
+            
+            <!--For closing date -->
+            <div class="time-box">
+              <label>Valid for (Days)</label>
+              <input type="number" name="valid" placeholder="Duration of days " required="">
+            </div>
+            <button type="submit" class="btn-log">Start Watering</button>
+            </form>
+
+      
+        </div>
+     
+</body>
+</html>

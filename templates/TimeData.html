@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Data</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+        <!--Creating a Navbar-->
+        <div class="navbar">
+          <nav>
+            <h1 class="pls">Smart Multizone Outdoor Plant Watering System</h1>
+            <ul>
+              <li><a href="{{ url_for('index3', username=username) }}">Dashboard</a></li>
+              <li><a href="{{ url_for('monitor', username=username) }}">Monitor</a></li>
+              <li><a href="{{ url_for('Time', username=username) }}">Scheduling</a></li>
+              <li><a href="{{ url_for('login2') }}">Log Out</a></li>
+      
+              </ul>
+              </ul>
+          </nav>
+          </div>
+          
+          <div class="receipt">
+            <h1>Time Scheduling Data for  {{ username }}</h1>
+            <p>Username: {{ username }}</p>
+            <p>Zone: region  {{ row[2] }}</p>
+            <p>Timeframe: {{ row[3] }}</p>
+            <p>Date: {{ row[4] }}</p>
+            <p>Liters: {{ row[5] }}</p>
+            <p>Duration: {{ row[6] }} minutes</p>
+            <p>Valid: {{ row[7] }} days</p>
+        </div>
+</body>
+</html>

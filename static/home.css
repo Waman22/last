@@ -1,0 +1,155 @@
+body{
+  width: auto;
+  background-image:linear-gradient(rgba(8,8,8,0),rgba(8, 8, 8, 0)), url(../static/image/image/agr2.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+
+}
+
+/* for navigation bar width line underneath
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 8px 2px;
+position: relative;
+float:right;
+margin-top: 50px;
+margin-bottom: 100px;
+
+}
+
+nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+
+background-color: rgb(45, 54, 54);
+
+}
+
+nav ul li {
+display: inline-block;
+position: relative;
+
+}
+
+nav ul li a {
+display: block;
+padding: 10px 20px;
+color: white;
+text-decoration: none;
+}
+
+nav ul li:hover > a {
+color: darkgreen;
+}
+
+nav ul li::after {
+content: "";
+display: block;
+height: 3px;
+width: 0;
+background: black;
+transition: width 0.3s ease-in-out;
+}
+
+nav ul li:hover::after {
+width: 100%;
+}
+*/
+/* Start*/
+
+
+.home
+{
+  padding-top: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+ul
+{
+  padding: 0;
+  list-style-type: none;
+}
+
+ul li 
+{
+  box-sizing: border-box;
+  width: 15em;
+  height: 3em;
+  font-size: 20px;
+  border-radius: 0.5em;
+  margin: 0.5em;
+  box-shadow: 0 0 1em rgba(0,0,0,0.2);
+  color: white;
+  font-family: sans-serif;
+  text-transform: capitalize;
+  line-height: 3em;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+ul li:nth-child(odd)
+{
+  background: linear-gradient(to right, rgb(126, 255, 126), rgb(94, 243, 94));
+  text-align: left;
+  padding-left: 10%;
+  transform: perspective(500px) rotateY(45deg);
+}
+
+ul li:nth-child(even)
+{
+  background: linear-gradient(to left,  rgb(94, 243, 94), rgb(126, 255, 126));
+  text-align: right;
+  padding-left: 10%;
+  transform: perspective(500px) rotateY(-45deg);
+}
+
+ul li:nth-child(odd):hover
+{
+  transform: perspective(200px) rotateY(45deg);
+  padding: 5%;
+}
+
+ul li:nth-child(even):hover
+{
+  transform: perspective(200px) rotateY(-45deg);
+  padding: 5%;
+}
+/*end*/
+
+a {
+text-decoration: none;
+color: rgb(30, 110, 15);
+}
+
+
+.logo{
+  color: rgb(9, 75, 16);
+  font-size: 30px;
+  font-family: 'Gill Sans';
+  /*padding property defines a padding (space) between the text and the border*/
+  padding: 10px;
+  margin-top: 50px;
+
+  position:relative;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+ul li a:hover{
+background-color: rgb(11, 128, 0);
+color: black;
+border-radius: 5px;
+}
+footer{
+color: #000;
+text-align: center;
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Monitors Page</title>
+	 <!-- Include necessary libraries for graph rendering -->
+	 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+	 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+     <!--Creating a Navbar-->
+	<body>
+		<div class="navbar">
+			<nav>
+				<h1 class="pls">Smart Multizone Outdoor Plant Watering System</h1>
+				<ul>
+					<li><a href="{{ url_for('index3', username=username) }}">Dashboard</a></li>
+					<li><a href="{{ url_for('monitor', username=username) }}">Monitor</a></li>
+					<li><a href="{{ url_for('Time', username=username) }}">Scheduling</a></li>
+					<li><a href="{{ url_for('login2') }}">Log Out</a></li>
+					</ul>
+			</nav>
+	
+		</div>
+		
+
+		<!--Infor mation about the sensors data -->
+
+		<h1 class="Sens"> {{username}} Welcome to the Monitor  Page </h1>
+		<h3>Making watering plants easier</h3>
+		<h1>Here are the type of sensors we use in the system:</h1>
+	
+		<div class="sensors">
+			<div class="row">
+					
+				<div class="col">
+					<div class="card card1">
+						<h4>Humidity</h4>
+						<p class="caption">
+							Humidity sensors can play an important role in a smart outdoor watering system by helping to ensure that plants 
+							receive the appropriate amount of water. These sensors measure the amount of moisture in the air and soil, and can communicate 
+							this information to the watering system. Using humidity sensors can help prevent overwatering, which can lead to root rot and 
+							other issues, as well as underwatering, which can cause plants to wilt and die. By accurately measuring the moisture level in 
+							the soil, these sensors can also help conserve water by only watering when necessary.
+							Some smart watering systems incorporate humidity sensors along with other types of sensors, such as temperature and light sensors, 
+							to create a comprehensive picture of the plant's environment. This data can be used to adjust watering schedules and amounts to 
+							nsure optimal growing conditions.
+							Overall, incorporating a humidity sensor into a smart outdoor watering system can help ensure that plants receive the appropriate 
+							amount of water, which can lead to healthier plants and more efficient water usage.</p>
+						
+	
+					</div>
+	
+					<div class="card card2">
+						<h5> Soil Moisture</h5>
+						<p class="caption">
+							Soil moisture is a critical factor in plant health, and a smart outdoor watering system can help ensure that plants receive the right 
+							amount of water by monitoring soil moisture levels. Soil moisture sensors are typically buried in the soil, where they can measure the 
+							moisture content at the root level. These sensors can communicate with the watering system, which can then adjust the watering schedule 
+							and amount accordingly. By using soil moisture sensors, a smart watering system can prevent both overwatering and underwatering, which 
+							an lead to root rot and other issues. Additionally, using these sensors can help conserve water by ensuring that the system only waters 
+							when necessary. Overall, incorporating soil moisture sensors into a smart outdoor watering system can help promote healthy plant growth 
+							and efficient water usage.
+						</p>
+						
+	
+					</div>
+	
+					<div class="card card3">
+						<h5>Temperature</h5>
+						<p class="caption">
+							temparature sensor measures the outdoor enviroment where plants are located .We measure temperature because we know how temperature affects plants health and growth.<br />
+							Extreme temperature causes plant to have dehydration by monitoring the temperature the sensor helps assees Whether the plants are exposed to unfavorable conditions enabling appropriate adjustments to watering schedule
+				
+						</p>
+						
+	
+					</div>
+					
+					<div class="card card4">
+						<h5>Water levels sensors</h5>
+						<p class="caption">
+							our water level sensor is a device that is used to measure and monitor the level of water in a tank, reservoir, or any other water storage system. It provides real-time information about the water level, allowing for efficient management and control of water resources
+						</p>
+						
+	
+				</div>
+	
+
+  
+
+  
+	  <div class="main">
+<!-- Sensor data patterns -->
+<div class="card5">
+	<div class="pattern_feedback">
+		<h1>Pattern Feedback</h1>
+
+    {% if pattern_feedback %}
+        <h2>Region: {{ region }}</h2>
+        <ul>
+            {% for sensor, feedback in pattern_feedback.items() %}
+                <li>{{ sensor }}: {{ feedback }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pattern feedback available for the selected region.</p>
+    {% endif %}
+	</div>
+</div>
+
+		<form method="get" action="{{ url_for('monitor', username=username) }}">
+				<label for="region">Region:</label>
+				<select name="region" id="region">
+				  <option value="" {% if not region %}selected{% endif %}>All</option>
+				  {% for region_id in range(1, region_count + 1) %}
+					<option value="{{ region_id }}" {% if region == region_id %}selected{% endif %}>Region {{ region_id }}</option>
+				  {% endfor %}
+				</select>
+				<input type="submit" value="Filter">
+			  </form>
+		  
+		  <!-- making bar graph-->
+		<div class="container">
+			<div id="chart"></div>
+			<style>
+			  /* Customize the chart container */
+			  #chart {
+				height: 310px;
+			  }
+			</style>
+			<script>
+			  // Extract the sensor data passed from the server
+			  var data = JSON.parse('{{ sensor_data|tojson|safe }}');
+		  
+			  // Extract the region selected by the user
+			  var region = '{{ region }}';
+		  
+			  // Define the labels and values for the graph
+			  var labels = [];
+			  var values = [];
+		  
+			  // Loop through the sensor data and extract the values for the selected region
+			  for (var i = 0; i < data.length; i++) {
+				if (region == null || data[i][3] == region) {
+				  labels.push(data[i][1]);
+				  values.push(parseFloat(data[i][2]));
+				}
+			  }
+		  
+			  // Create the chart object
+			  var chart = new ApexCharts(document.querySelector("#chart"), {
+				chart: {
+				  type: 'bar', // or 'radialBar' for a gauge graph
+				},
+				series: [{
+				  data: values,
+				}],
+				xaxis: {
+				  categories: labels,
+				},
+				colors: ['darkgreen'], // Green color for bars
+			  });
+		  
+			  // Add an event listener to show details when a user hovers over a bar
+			  chart.addEventListener('dataPointMouseEnter', function(event, chartContext, config) {
+				var tooltip = chartContext.tooltip;
+				var series = chartContext.series[config.seriesIndex];
+				var value = series.data[config.dataPointIndex];
+				tooltip.setTitle(series.name);
+				tooltip.setText(value);
+				tooltip.show();
+				tooltip.move(config.clientX, config.clientY, chartContext.chartRect.width);
+			  });
+		  
+			  // Render the chart
+			  chart.render();
+			</script>
+		  </div>
+		
+
+
+		
+
+	</div>
+	</body>
+  </html>

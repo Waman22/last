@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to login Page</title>
+    <link rel="stylesheet" href="/static/Copy.css">
+</head>
+<body>
+    <h2>Login</h2>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('login') }}" method="post">
+         <!--Username-->
+         <label for="username" class> Enter Your Username: </label>
+         <input class="form-input" type="text" name="username" required>
+         <br />
+ 
+         <!--Password-->
+         <label for="passord" class>  Enter Your Password: </label>
+         <input class="form-input" type="text" name="password" required>
+         <br />
+        <p><input type="submit" value="Login"></p>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('sign_up') }}">Signup</a></p>
+</body>
+</html>

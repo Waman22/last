@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>signup/Login</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style1.css">
+</head>
+<body>
+	<nav>
+	
+		  <ul>
+			<li><a href="{{ url_for('Home') }}">Home</a></li>
+			<li><a href="#">Login/Sign_up</a></li>
+			</ul>
+	
+	</nav>
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+		<div class="signup">
+			<form action="{{ url_for('LoginSignUp') }}" method="post">
+				<label for="chk" aria-hidden="true">Sign up</label>
+				<input class="form-input" type="text" name="name" placeholder="Enter your Name:" required>
+				<input class="form-input" type="text" name="surname" placeholder="Enter your Surname:" required>
+				<input class="form-input" type="text" name="username" placeholder="Create Username:" required>
+				<input class="form-input" type="email" name="email" placeholder="Enter your Email:" required>
+				<input class="form-input" type="password" name="password" placeholder="Create Password:" required>
+				<input class="form-input" type="date" name="Dob" placeholder="Enter Your Date of Birth:" required>
+				<input class="form-input" type="number" name="region" placeholder="Number of Regions:" required>
+				<input class="form-input" type="text" name="Address" placeholder="Enter your Address:" required>
+				<button type="submit">Sign up</button>
+			</form>
+		</div>
+
+	
+	</div>
+</body>
+</html>

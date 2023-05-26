@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome too the home page </title>
+    <link rel="stylesheet" href="/static/home.css">
+</head>
+<body>
+    <div class="Log">
+        <div class="icon">
+            <h1 class="logo">Welcome to your Smart outdoor plant watering system </h1>
+        </div>
+    
+       
+    <!--we creating for the login box-->
+  
+    <div class="home">
+        <ul>
+           <li><a href="#">Home</a></li>
+           <li><a href="{{ url_for('About') }}">About</a</li>
+           <li><a href="{{ url_for('services') }}">Services</a</li> 
+            <li><a href="{{ url_for('sign') }}">Signup</a</li>
+           <li><a href="{{ url_for('login2') }}">Login</a</li>
+        </ul>
+    </div>
+           
+    
+</body>
+<footer>
+    <p>&copy; 2023 Smart Outdoor Plant Watering System. All rights reserved.</p>
+</footer>
+</body>
+</html>

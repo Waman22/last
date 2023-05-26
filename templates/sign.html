@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Sign up / Login Form</title>
+  <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="sign-box">
+		<h2>Sign Up</h2>
+		<form action="{{ url_for('sign') }}" method="post">
+			<!-- for name-->
+            <div class="user-box">
+                <input type="text" name="name" required="">
+                <label>Name</label>
+              </div>
+			  <!-- for Surname-->
+              <div class="user-box">
+                <input type="text" name="surname" required="">
+                <label>Surname</label>
+              </div>
+			  <!-- for Username-->
+		  <div class="user-box">
+			<input type="text" name="username" required="">
+			<label>Username</label>
+		  </div>
+		  <!-- for password-->
+		  <div class="user-box">
+			<input type="password" name="password" required="">
+			<label>Password</label>
+		  </div>
+		  <!-- for date of birth-->
+          <div class="user-box">
+			<input type="date" name="Dob" required="">
+			<label>Date of birth</label>
+		  </div>
+		  <!-- for email-->
+		  <div class="user-box">
+			<input type="text" name="email" required="">
+			<label>Email</label>
+		  </div>
+		 <!-- for regions-->
+<div class="user-box">
+	<input type="number" name="region_count" id="region_count" required="" max="30">
+	<label>Enter the number of regions (maximum 30):</label>
+  </div>
+  
+  			<!-- for Address-->
+          <div class="user-box">
+			<input type="text" name="Address" required="">
+			<label>Address</label>
+		  </div>
+		 
+			<p><input type="submit" value="Signup"></p>
+		
+		</form>
+		<p>Already have an account? <a href="{{ url_for('login2') }}">Login</a></p>
+    
+	  </div>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
